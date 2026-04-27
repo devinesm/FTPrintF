@@ -6,7 +6,7 @@
 /*   By: ipinto-m <ipinto-m@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 10:39:11 by ipinto-m          #+#    #+#             */
-/*   Updated: 2026/04/27 09:59:04 by ipinto-m         ###   ########.fr       */
+/*   Updated: 2026/04/27 10:19:25 by ipinto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -28,7 +28,11 @@ static int	get_format(char c, va_list args)
 	if (c == '%')
 		return (ft_print_char('%', 1));
 	else
-		return (ft_print_char(c, 1));
+	{
+		if (ft_print_char('%', 1) == -1 || ft_print_char(c, 1) == -1)
+			return (-1);
+		return (2);
+	}
 }
 
 static int	error(va_list *args)

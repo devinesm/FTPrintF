@@ -6,7 +6,7 @@
 /*   By: ipinto-m <ipinto-m@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 08:49:17 by ipinto-m          #+#    #+#             */
-/*   Updated: 2026/04/27 10:02:04 by ipinto-m         ###   ########.fr       */
+/*   Updated: 2026/04/27 10:22:55 by ipinto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -21,10 +21,9 @@ int	ft_print_numbers(int number, int fd)
 	nb = number;
 	if (nb < 0)
 	{
-		temp = ft_print_char('-', fd);
-		if (temp == -1)
+		if (ft_print_char('-', fd) == -1)
 			return (-1);
-		len += temp;
+		len ++;
 		nb = -nb;
 	}
 	if (nb >= 10)
@@ -37,7 +36,8 @@ int	ft_print_numbers(int number, int fd)
 	temp = ft_print_char((nb % 10) + '0', fd);
 	if (temp == -1)
 		return (-1);
-	return (temp);
+	len += temp;
+	return (len);
 }
 
 int	ft_print_unsigned(unsigned int number, int fd)
